@@ -23,6 +23,10 @@ function App() {
         </a>
       </header>
 
+      <h1>
+        One really big header 
+      </h1>
+
       <button onClick={breakWebPage}>Break me </button>
     </div>
   );

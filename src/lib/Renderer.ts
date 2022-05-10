@@ -35,6 +35,7 @@ export default class Renderer {
 
     if (!ctx) throw new Error("2d Context not supported");
 
+
     ctx.drawImage(
       this.config.image,
       column * this.slotSize,

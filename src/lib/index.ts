@@ -14,7 +14,7 @@ canvas.style.right = "0";
 let ctx = canvas.getContext("2d");
 
 document.getElementById("ctrl")?.addEventListener("click", () => {
-  console.log("breaking every thing ");
+
   breakWebPage();
 });
 
@@ -40,12 +40,18 @@ export const breakWebPage = async () => {
 
   let _image = await utils.getScreenShot();
 
+
   let image = document.createElement("canvas");
 
   image.width = width;
   image.height = height;
 
-  image.getContext("2d")?.drawImage(_image, 0, 0, width , _image.height * width / _image.width );
+  // Some basic scaling so that the screenshot always fits the canvas;
+  let relative_height = _image.height * width / _image.width;
+
+  // The screenshot goes from the page top to the bottom,
+  // we crop the top so that we always render what is actually visible
+  image.getContext("2d")?.drawImage(_image, 0, height - relative_height , width , relative_height );
 
   let { engine, rows, columns } = utils.createStackEngine(width, height);
 
@@ -89,12 +95,5 @@ export const breakWebPage = async () => {
   Composite.add(engine.world, mouseConstraint);
 };
 
-chrome.runtime.onMessage.addListener(function (msg, _ ,sendResponse) {
-  if (msg.command && msg.command == "break_web_page") {
-
-    breakWebPage();
-    sendResponse("Ok");
-  }
-});
 
 export default breakWebPage;

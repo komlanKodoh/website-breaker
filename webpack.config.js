@@ -8,7 +8,7 @@ module.exports = {
     context: ROOT,
 
     entry: {
-        'main': './index.ts'
+        'main': './extension.ts'
     },
     
     output: {

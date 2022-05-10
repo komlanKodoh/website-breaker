@@ -2,7 +2,7 @@
   "name": "website-braker",
   "version": "1.0.0",
   "description": "",
-  "main": "build/main/index.js",
+  "main": "build/main/lib/index.js",
   "scripts": {
     "build:bundle": "webpack --config webpack.config.js --mode production",
     "build": "tsc",
