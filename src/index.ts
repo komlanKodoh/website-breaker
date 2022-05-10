@@ -7,15 +7,28 @@ canvas.style.width = "100vw";
 canvas.style.height = "100vh";
 
 canvas.style.position = "fixed";
+canvas.style.zIndex = "100000000000";
 canvas.style.top = "0";
 canvas.style.right = "0";
 
 let ctx = canvas.getContext("2d");
 
+document.getElementById("ctrl")?.addEventListener("click", () => {
+  console.log("breaking every thing ");
+  breakWebPage();
+});
+
 export const breakWebPage = async () => {
+
   if (!ctx) {
     throw new Error("canvas context is not supported ");
-  }
+  }  
+  
+
+    
+  var dst = "some random shit";
+  document.getElementsByTagName("title")[0].innerHTML = dst;
+
 
   const width = Math.ceil(window.innerWidth);
   const height = Math.ceil(window.innerHeight);
@@ -32,7 +45,7 @@ export const breakWebPage = async () => {
   image.width = width;
   image.height = height;
 
-  image.getContext("2d")?.drawImage(_image, 0, 0, width, height);
+  image.getContext("2d")?.drawImage(_image, 0, 0, width , _image.height * width / _image.width );
 
   let { engine, rows, columns } = utils.createStackEngine(width, height);
 
@@ -76,24 +89,12 @@ export const breakWebPage = async () => {
   Composite.add(engine.world, mouseConstraint);
 };
 
-window.onload = function () {
-  let button = document.createElement("button");
+chrome.runtime.onMessage.addListener(function (msg, _ ,sendResponse) {
+  if (msg.command && msg.command == "break_web_page") {
 
-  document.body.appendChild(button);
-
-  button.style.position = "fixed";
-  button.style.top = "0";
-  button.style.right = "0";
-
-  button.style.padding = "1em";
-
-  button.innerText = "Break the webpage";
-
-
-  button.onclick = () => {
     breakWebPage();
-  };
-};
+    sendResponse("Ok");
+  }
+});
 
-console.log ( "My custom webpage breaker loaded ")
-
+export default breakWebPage;

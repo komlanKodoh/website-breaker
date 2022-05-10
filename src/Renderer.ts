@@ -19,7 +19,14 @@ export default class Renderer {
     window.requestAnimationFrame(this.run.bind(this));
   }
 
+  imageSliceBank: { [key: string]: HTMLCanvasElement } = {};
+
   getImageSlice(row: number, column: number) {
+    const serialize = (row: number, column: number) => `${row}_${column}`;
+
+    if (this.imageSliceBank[serialize(row, column)])
+      return this.imageSliceBank[serialize(row, column)];
+
     const canvas = document.createElement("canvas");
     canvas.width = this.slotSize;
     canvas.height = this.slotSize;
@@ -40,6 +47,7 @@ export default class Renderer {
       this.slotSize
     );
 
+    this.imageSliceBank[serialize(row, column)] = canvas;
     return canvas;
   }
 

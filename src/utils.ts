@@ -2,20 +2,20 @@ import html2canvas from "html2canvas";
 import { Bodies, Composite, Composites, Engine } from "matter-js";
 
 export const getScreenShot = async () => {
-  return await html2canvas(document.body);
+  return await html2canvas(document.body, {scrollY:2000});
 };
 
 export const createStackEngine = (width: number, height: number) => {
   let engine = Engine.create();
-  engine.gravity.y = 0.09;
+  engine.gravity.y = 0.05;
 
   let world = engine.world;
 
   let WALL_THICKNESS = 50;
-  let UNIT_SIZE = 50;
+  let UNIT_SIZE = 30;
 
   let columns = Math.ceil(width / UNIT_SIZE);
-  let rows = Math.floor(height / UNIT_SIZE);
+  let rows = Math.ceil(height / UNIT_SIZE);
 
   var stack = Composites.stack(
     0,
@@ -37,7 +37,7 @@ export const createStackEngine = (width: number, height: number) => {
     stack,
     Bodies.rectangle(
       width / 2,
-      height + WALL_THICKNESS / 2,
+      height + WALL_THICKNESS  ,
       width,
       height / 10,
       { isStatic: true }

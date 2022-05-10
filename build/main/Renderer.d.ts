@@ -9,6 +9,9 @@ export default class Renderer {
     slotSize: number;
     constructor(config: Config);
     run(): void;
+    imageSliceBank: {
+        [key: string]: HTMLCanvasElement;
+    };
     getImageSlice(row: number, column: number): HTMLCanvasElement;
     forEverySlot(callback: (slot: Matter.Body, location: {
         row: number;
