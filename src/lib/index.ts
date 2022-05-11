@@ -24,12 +24,6 @@ export const breakWebPage = async () => {
     throw new Error("canvas context is not supported ");
   }  
   
-
-    
-  var dst = "some random shit";
-  document.getElementsByTagName("title")[0].innerHTML = dst;
-
-
   const width = Math.ceil(window.innerWidth/30)*30 ;
   const height = Math.ceil(window.innerHeight/30)*30 ;
 

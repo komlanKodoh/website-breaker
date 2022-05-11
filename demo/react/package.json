@@ -15,7 +15,7 @@
     "react-scripts": "5.0.1",
     "typescript": "^4.6.4",
     "web-vitals": "^2.1.4",
-    "website-breaker": "../"
+    "website-breaker": "../../"
   },
   "scripts": {
     "start": "react-scripts start",
