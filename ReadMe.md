@@ -1,5 +1,5 @@
 
-# Website -breaker
+# Website -breaker | [linkedin](www.linkedin.com/in/komlankodoh)
 
 ![Website breaker logo](https://res.cloudinary.com/dkoatnxem/image/upload/v1652274845/website-breaker/website-breaker_ohpshu.png)
 
