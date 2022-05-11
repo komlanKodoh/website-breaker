@@ -30,8 +30,8 @@ export const breakWebPage = async () => {
   document.getElementsByTagName("title")[0].innerHTML = dst;
 
 
-  const width = Math.ceil(window.innerWidth);
-  const height = Math.ceil(window.innerHeight);
+  const width = Math.ceil(window.innerWidth/30)*30 ;
+  const height = Math.ceil(window.innerHeight/30)*30 ;
 
   canvas.width = width;
   canvas.height = height;
@@ -40,18 +40,17 @@ export const breakWebPage = async () => {
 
   let _image = await utils.getScreenShot();
 
-
   let image = document.createElement("canvas");
 
   image.width = width;
   image.height = height;
 
   // Some basic scaling so that the screenshot always fits the canvas;
-  let relative_height = _image.height * width / _image.width;
+  let relative_height = Math.ceil ( _image.height * width / _image.width ) ;
 
   // The screenshot goes from the page top to the bottom,
   // we crop the top so that we always render what is actually visible
-  image.getContext("2d")?.drawImage(_image, 0, height - relative_height , width , relative_height );
+  image.getContext("2d")?.drawImage(_image, 0, 0 , width , relative_height );
 
   let { engine, rows, columns } = utils.createStackEngine(width, height);
 

@@ -2,7 +2,7 @@ import html2canvas from "html2canvas";
 import { Bodies, Composite, Composites, Engine } from "matter-js";
 
 export const getScreenShot = async () => {
-  return await html2canvas(document.body, { allowTaint : true });
+  return await html2canvas(document.body, { allowTaint : true, y: window.scrollY, x: window.scrollX});
 };
 
 export const createStackEngine = (width: number, height: number) => {
@@ -37,9 +37,9 @@ export const createStackEngine = (width: number, height: number) => {
     stack,
     Bodies.rectangle(
       width / 2,
-      height + WALL_THICKNESS  ,
+      height + WALL_THICKNESS / 2  ,
       width,
-      height / 10,
+      WALL_THICKNESS ,
       { isStatic: true }
     ),
   ]);
