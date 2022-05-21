@@ -37,7 +37,7 @@ Using website is very simple;
 import breakWebPage from "website-breaker";
 
 document.getElementById("dangerous-button")
-        .addEventListener("click", () => breakWebPage);
+        .addEventListener("click", () => breakWebPage());
 ```
 
 ```html
